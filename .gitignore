@@ -1,0 +1,18 @@
+# Виртуальное окружение
+/.venv
+/.venv/
+/venv
+/venv/
+
+# Файлы окружения Pipenv
+Pipfile
+Pipfile.lock
+
+# Кэши Pipenv
+.pipenv
+.pipenv-*
+
+# Логи Pipenv
+pipenv-debug.log
+
+__pycache__/
