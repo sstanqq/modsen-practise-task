@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='css/style.css') }}">
+    <title>Simple searcher</title>
+</head>
+<body>
+    <header>
+        <h1>Simple searcher</h1>
+    </header>
+    <main>
+        <form action="/search" method="GET">
+            <input type="text" name="query" placeholder="Enter your search query">
+            <input type="submit" value="Search">
+        </form>
+
+        <!-- Нужно сделать так чтобы таблицы не было пока чел не серчит -->
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Date</th>
+                    <th>Other</th>
+                    <th>Delete</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Тут бахну результаты поиска(потом) -->
+            </tbody>
+        </table>
+    </main>
+</body>
+</html>
