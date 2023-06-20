@@ -9,8 +9,4 @@ class Document(db.Model):
     def __repr__(self):
         return f'Document: {self.text}'
     
-    def __init__(self, _rubrics, _text, _created_date):
-        self.rubrics = _rubrics
-        self.text = _text
-        self.created_date = _created_date
     
