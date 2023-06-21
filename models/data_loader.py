@@ -7,6 +7,10 @@ from datetime import datetime
 FILE_NAME = 'posts.csv'
 
 def load_data_to_database():
+    if Document.query.count() > 0:
+        print("[Database] Data already loaded")
+        return
+    
     with open(FILE_NAME, 'r', encoding='utf-8') as file:
         reader = csv.reader(file)
         next(reader)
