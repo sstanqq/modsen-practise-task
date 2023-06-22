@@ -42,10 +42,8 @@ def search_documents(index_name, query):
     return result["hits"]["hits"]
 
 def test():
-    # Выполнение поискового запроса
     response = es.search(index='posts', body={'query': {'match_all': {}}})
 
-    # Получение результатов поиска
     hits = response['hits']['hits']
     print('RES: ')
     for hit in hits:
