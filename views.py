@@ -1,6 +1,7 @@
-from flask import Blueprint, render_template, request
+from flask import Blueprint, render_template, request, redirect
 from models.document import Document
 from models.database import db
+from search import search_documents, delete_document
 
 # Потом убрать
 from datetime import datetime
@@ -13,15 +14,24 @@ views = Blueprint('views', __name__)
 def index():
     return render_template('index.html')
 
-# Тест
-@views.route('/document')
-def create_document():
-    # text = request.json['text']
-    text = 'Test'
+
+@views.route('/search', methods=['GET'])
+def search():
+    query = request.args.get('query')
+
+    results = search_documents("posts", query)
+
     
-    document = Document(['Test'], text, datetime.now)
+    return render_template('index.html', results=results, query=query)
+
+@views.route('/delete', methods=['POST'])
+def delete():
+    document_id = request.form.get('document_id')
     
-    db.session.add(document)
-    db.session.commit()
-    
-    return f'{document.text}'
+    if document_id:
+        delete_document("posts", document_id)
+        document = Document.query.get(document_id)
+        db.session.delete(document)
+        db.session.commit()
+        
+    return redirect('/')

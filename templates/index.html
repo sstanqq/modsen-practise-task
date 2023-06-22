@@ -18,7 +18,7 @@
             <input type="submit" value="Search">
         </form>
 
-        <!-- Нужно сделать так чтобы таблицы не было пока чел не серчит -->
+       
         <table>
             <thead>
                 <tr>
@@ -30,7 +30,21 @@
                 </tr>
             </thead>
             <tbody>
-                <!-- Тут бахну результаты поиска(потом) -->
+                {% for result in results %}
+                <tr>
+                    <td>{{ result._source.iD }}</td>
+                    <td>{{ result._source.text }}</td>
+                    <td>{{ result._source.created_date }}</td>
+                    <!-- Другие поля БД, если необходимо -->
+                    <td>Other data</td>
+                    <td>
+                        <form action="/delete" method="POST">
+                            <input type="hidden" name="document_id" value="{{ result._source.iD }}">
+                            <button type="submit">Delete</button>
+                        </form>
+                    </td>
+                </tr>
+                {% endfor %}
             </tbody>
         </table>
     </main>
