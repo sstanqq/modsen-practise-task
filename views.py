@@ -3,9 +3,6 @@ from models.document import Document
 from models.database import db
 from search import search_documents, delete_document
 
-# Потом убрать или нет 
-from datetime import datetime
-
 # Все руты тут
 views = Blueprint('views', __name__)
 
@@ -37,6 +34,7 @@ def delete():
     if document_id:
         delete_document("posts", document_id)
         document = Document.query.get(document_id)
+        
         db.session.delete(document)
         db.session.commit()
         

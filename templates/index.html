@@ -10,7 +10,7 @@
 </head>
 <body>
     <header>
-        <h1>Simple searcher</h1>
+        <h1>Simple searcher by sstanqq</h1>
     </header>
     <main>
         <form action="/search" method="GET">
@@ -18,7 +18,7 @@
             <input type="submit" value="Search">
         </form>
 
-       
+        {% if documents %}
         <table>
             <thead>
                 <tr>
@@ -26,7 +26,7 @@
                     <th>Name</th>
                     <th>Date</th>
                     <th>Rubrics</th>
-                    <th>Delete</th>
+                    <th></th>
                 </tr>
             </thead>
             <tbody>
@@ -46,6 +46,7 @@
                 {% endfor %}
             </tbody>
         </table>
+        {% endif %}
     </main>
 </body>
 </html>

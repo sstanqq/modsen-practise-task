@@ -27,7 +27,21 @@ def index_document(index_name, document):
     es.index(index=index_name, body=document)
 
 def delete_document(index_name, document_id):
-    es.delete(index=index_name, id=document_id)
+    query = {
+        "query": {
+            "term": {
+                "id": document_id
+            }
+        }
+    }
+
+    response = es.search(index=index_name, body=query)
+
+    if response["hits"]["total"]["value"] > 0:
+        document_id = response["hits"]["hits"][0]["_id"]
+        es.delete(index=index_name, id=document_id)
+    else:
+        print("Document not found")
 
 def search_documents(index_name, query):
     body = {
