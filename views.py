@@ -3,7 +3,7 @@ from models.document import Document
 from models.database import db
 from search import search_documents, delete_document
 
-# Потом убрать
+# Потом убрать или нет 
 from datetime import datetime
 
 # Все руты тут
@@ -20,9 +20,15 @@ def search():
     query = request.args.get('query')
 
     results = search_documents("posts", query)
-
     
-    return render_template('index.html', results=results, query=query)
+    # Хз потом может переделаю Главноее что работает
+    documents = []
+    for result in results:
+        document_id = result['_source']['id']
+        document = Document.query.get(document_id)
+        documents.append(document)
+    
+    return render_template('index.html', documents=documents, query=query)
 
 @views.route('/delete', methods=['POST'])
 def delete():

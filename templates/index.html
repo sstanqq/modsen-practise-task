@@ -25,21 +25,20 @@
                     <th>ID</th>
                     <th>Name</th>
                     <th>Date</th>
-                    <th>Other</th>
+                    <th>Rubrics</th>
                     <th>Delete</th>
                 </tr>
             </thead>
             <tbody>
-                {% for result in results %}
+                {% for document in documents %}
                 <tr>
-                    <td>{{ result._source.iD }}</td>
-                    <td>{{ result._source.text }}</td>
-                    <td>{{ result._source.created_date }}</td>
-                    <!-- Другие поля БД, если необходимо -->
-                    <td>Other data</td>
+                    <td>{{ document.id }}</td>
+                    <td>{{ document.text }}</td>
+                    <td>{{ document.created_date }}</td>
+                    <td>{{ ", ".join(document.rubrics) }}</td>
                     <td>
                         <form action="/delete" method="POST">
-                            <input type="hidden" name="document_id" value="{{ result._source.iD }}">
+                            <input type="hidden" name="document_id" value="{{ document.id}}">
                             <button type="submit">Delete</button>
                         </form>
                     </td>

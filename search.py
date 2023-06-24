@@ -1,6 +1,6 @@
 from elasticsearch import Elasticsearch
 
-from dotenv import load_dotenv
+# from dotenv import load_dotenv
 import os
 
 el_host = os.getenv('ELASTIC_HOST')
@@ -41,7 +41,8 @@ def search_documents(index_name, query):
     result = es.search(index=index_name, body=body)
     return result["hits"]["hits"]
 
-def test():
+# Для теста
+def output_all():
     response = es.search(index='posts', body={'query': {'match_all': {}}})
 
     hits = response['hits']['hits']

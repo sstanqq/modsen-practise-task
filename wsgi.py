@@ -15,8 +15,11 @@ app.register_blueprint(views, url_prefix='/')
 
 if __name__ == '__main__':
     with app.app_context():
-        create_index('posts')
-        load_data_to_database()
-        load_data_to_elasticsearch()
-    
-    app.run()
+        try:
+            create_index('posts')
+            load_data_to_database()
+            load_data_to_elasticsearch()
+            app.run()
+        # Хз нужно ли удалять индекс но я удалю 
+        finally:
+            delete_index('posts')

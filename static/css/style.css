@@ -86,6 +86,10 @@
     color: #292929;
   }
   
+  tbody {
+    font-size: 9px;
+  }
+
   tbody tr:hover {
     background-color: #f9f9f9;
   }

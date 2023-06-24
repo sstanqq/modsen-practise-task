@@ -5,12 +5,14 @@ from models.document import Document
 from models.database import db
 from search import index_document, search_documents
 
+FILE_NAME = 'data/posts.csv'
+
 def load_data_to_database():
     if Document.query.count() > 0:
         print("[Database] Data already loaded")
         return
 
-    with open('posts.csv', 'r', encoding='utf-8') as file:
+    with open(FILE_NAME, 'r', encoding='utf-8') as file:
         reader = csv.reader(file)
         next(reader)
 
