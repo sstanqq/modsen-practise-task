@@ -1,4 +1,5 @@
 from flask_sqlalchemy import SQLAlchemy
+from sqlalchemy import inspect
 
 from dotenv import load_dotenv
 import os
@@ -19,5 +20,10 @@ def init_db(app):
     
     db.init_app(app)
     
+    with app.app_context():
+        inspector = inspect(db.engine)
+        if not inspector.has_table('document'):
+            db.create_all()
+            
     # В flask shell прописываем db.create_all()
     
